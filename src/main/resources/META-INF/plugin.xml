@@ -1,0 +1,41 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+    <id>dev.gaphunter.githubactionspwnrequestcompanion</id>
+    <name>GitHub Actions Pwn-Request Companion</name>
+    <vendor>Gap Hunter Labs</vendor>
+    <description><![CDATA[
+        <p>Flags a GitHub Actions job -- triggered by
+        <code>pull_request_target</code>/<code>workflow_run</code> --
+        that checks out untrusted PR/workflow_run head content while
+        secrets are reachable, either directly in its own steps or
+        through a local reusable-workflow call
+        (<code>uses: ./.github/workflows/x.yml</code> with
+        <code>secrets: inherit</code> or an explicit
+        <code>secrets:</code> map). This is the real "Pwn Request"
+        pattern GitHub Security Lab documents, the mechanism behind
+        several real supply-chain incidents.</p>
+        <p>Built on a real reusable-workflow call graph across EVERY
+        workflow file in <code>.github/workflows/</code> -- resolving
+        whether the TARGET of a reusable-workflow call actually uses
+        secrets, not just whether the caller passes them.</p>
+        <p><b>Not a real YAML parser</b> -- an indentation-based
+        micro-scanner, same discipline as this catalog's other YAML
+        plugins.</p>
+        <p>Stated honestly: v0.1 only follows local reusable-workflow
+        calls (<code>./.github/workflows/x.yml</code>, never an
+        external repo reference) one hop deep.</p>
+        <p>Free. No license nags, no telemetry, no network calls.</p>
+    ]]></description>
+
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <localInspection language=""
+            groupName="GitHub Actions Pwn-Request Companion"
+            displayName="Untrusted checkout with reachable secrets (Pwn Request)"
+            enabledByDefault="true"
+            level="WARNING"
+            implementationClass="dev.gaphunter.githubactionspwnrequestcompanion.inspection.PwnRequestInspection"/>
+        <notificationGroup id="GitHub Actions Pwn-Request Companion" displayType="BALLOON"/>
+    </extensions>
+</idea-plugin>

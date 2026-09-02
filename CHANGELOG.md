@@ -1,0 +1,18 @@
+<!-- Keep a Changelog guide -> https://keepachangelog.com -->
+
+# GitHub Actions Pwn-Request Companion Changelog
+
+## [Unreleased]
+
+## [0.1.0]
+
+### Added
+
+- Real reusable-workflow call graph across every
+  `.github/workflows/*.yml` file, flagging a `pull_request_target`/
+  `workflow_run` job that checks out untrusted head content while
+  secrets are reachable directly or through one hop of a local
+  reusable-workflow call.
+
+[Unreleased]: https://github.com/GapHunterLabs/github-actions-pwn-request-companion/compare/0.1.0...HEAD
+[0.1.0]: https://github.com/GapHunterLabs/github-actions-pwn-request-companion/commits/0.1.0
