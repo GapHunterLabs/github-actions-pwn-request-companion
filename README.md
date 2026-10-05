@@ -10,10 +10,10 @@ GitHub Actions and workflows secure: Preventing pwn requests"): a
 workflow triggered by `pull_request_target`/`workflow_run` is
 privileged (repository write access, secrets) by design, but if it
 also checks out the PR's own head content before any privileged step,
-an attacker's code runs with that privilege -- the mechanism behind
-multiple real, publicly documented supply-chain incidents. zizmor (used
-internally by this catalog's own pipeline) is a CLI tool, not an IDE
-plugin; no dedicated Marketplace plugin found for this exact,
+an attacker's code runs with that privilege -- a practice GitHub Security
+Lab warns "may lead to repository compromise". zizmor covers workflow
+security as a CLI tool, not an IDE plugin; no dedicated Marketplace
+plugin found for this exact,
 cross-file reusable-workflow angle.
 
 ## Why built this way
