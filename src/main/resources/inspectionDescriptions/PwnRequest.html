@@ -1,0 +1,11 @@
+<html>
+<body>
+Reports a GitHub Actions job triggered by <code>pull_request_target</code> or <code>workflow_run</code> that checks
+out untrusted pull request code while secrets are reachable, in its own steps or through a local reusable workflow
+(<code>uses: ./.github/workflows/x.yml</code> with <code>secrets: inherit</code> or an explicit <code>secrets:</code> map).
+<!-- tooltip end -->
+<p>This is the "Pwn Request" pattern documented by GitHub Security Lab: code from a fork runs with the repository's
+secrets. Reusable-workflow calls are resolved across every file in <code>.github/workflows/</code>, so a call is
+reported only when its target actually uses secrets.</p>
+</body>
+</html>
